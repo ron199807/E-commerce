@@ -24,7 +24,9 @@ from product.views import (
     OrderViewSet, DiscountViewSet
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
 
 
 router = DefaultRouter()
@@ -37,6 +39,29 @@ router.register(r'wish_list', WishlistViewSet, basename='wish_list')
 router.register(r'order', OrderViewSet, basename='order')
 router.register(r'discounts', DiscountViewSet, basename='discount')
 
+#-----------------------
+# swagger schema
+#-----------------------
+schema_view = get_schema_view(
+    openapi.Info(
+        title="E-commerce API",
+        default_version="v1",
+        description="API documentation for the E-commerce project",
+        term_of_service="http://google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@yourapi.local"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+
+
+)
+
+
+
+
+
+
 urlpatterns = [
     # Main URL patterns
     path('admin/', admin.site.urls),
@@ -45,7 +70,13 @@ urlpatterns = [
     # JWT authentication paths
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-]
+
+    # swagger ui
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-ui'),
+
+    # ReDoc
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
+ ]
 
 
 
