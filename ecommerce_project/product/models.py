@@ -1,6 +1,7 @@
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.contrib.auth import get_user_model
+
 
 # custome user model
 class CustomUser(AbstractUser):
@@ -85,7 +86,12 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered_at = models.DateTimeField(auto_now_add=True)
 
+   # transmission = "automatic"
+    @transaction.atomic # ensures automatically excution of operations
     def save(self, *args, **kwargs):
+        if self.product.stock_quantity < self.quantity:
+            raise ValueError("Not enough stock to fulfill this order") # raise valueError if the quantity is less than the orderded stock
+
         # Reduce stock quantity
         self.product.stock_quantity -= self.quantity
         self.product.save()

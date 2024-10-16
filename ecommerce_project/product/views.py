@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
+from rest_framework.viewsets import ModelViewSet
 from .models import Product, Category, CustomUser, Review, Order, Wishlist, ProductImage, Discount
 from .serializers import (
-    ProductSerializer, ProductCreateSerializer, 
+    ProductSerializer, ProductSerializer, ProductCreateSerializer,
     CategorySerializer, UserSerializer, ReviewSerializer, WishlistSerializer, ProductImageSerializer, OrderSerializer, OrderCreateSerializer, DiscountSerializer
 )
 from rest_framework.pagination import PageNumberPagination
@@ -19,7 +20,8 @@ class ProductPagination(PageNumberPagination):
     page_size = 10
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('id')  # order by id
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     pagination_class = ProductPagination
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['name', 'category__name']
@@ -30,7 +32,7 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductCreateSerializer
         return ProductSerializer
 
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+   
 
 # category viewset
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -56,6 +58,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 # product image view set
 class ProductImageViewSet(viewsets.ModelViewSet):
     queryset = ProductImage.objects.all()
@@ -73,9 +76,8 @@ class WishlistViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 # order view set
-
-
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
 

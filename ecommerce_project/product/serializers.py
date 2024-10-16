@@ -14,8 +14,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'category', 
-                  'stock_quantity', 'image_url', 'created_at']
+        fields = ['id', 'name', 'description', 'price', 'category', 'stock_quantity', 'image_url', 'created_at'
+        ]
 
 # creating a product
 class ProductCreateSerializer(serializers.ModelSerializer):
@@ -41,6 +41,22 @@ class ReviewSerializer(serializers.ModelSerializer):
         if value < 1 or value > 5:
             raise serializers.ValidationError("Rating must be between 1 and 5")
         return value
+
+    def validate(self, data):
+        user = self.context['request'].user
+        product = data['product']
+
+        #  check if the user has already reviewed the product
+        if Review.objects.filter(product=product, user=user).exists():
+            raise serializers.ValidationError('You have already reviewed this product.')
+        return data
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+
+# automatically assign user
+        return super().create(validated_data)
+
 
 # product images serializer
 class ProductImageSerializer(serializers.ModelSerializer):
