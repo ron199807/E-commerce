@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}API Features - E-Commerce Platform{% endblock %}
+
+{% block content %}
+<section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center mb-4 text-gray-800">E-Commerce API Features</h1>
+        <p class="text-xl text-center mb-12 text-gray-600 max-w-3xl mx-auto">
+            Discover the powerful capabilities of our RESTful API for building modern e-commerce applications
+        </p>
+
+        <!-- Feature Categories -->
+        <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+
+            <!-- Product Management -->
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-box-open text-indigo-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Product Management</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Full CRUD operations</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Advanced search & filtering</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Similar product recommendations</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Image management</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="/docs/swagger" class="text-indigo-600 hover:text-indigo-800 font-medium">
+                        View API Reference →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Order Processing -->
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-shopping-cart text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Order Processing</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Create & manage orders</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Automatic stock updates</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Order cancellation</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>User-specific order history</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="/docs/swagger/" class="text-green-600 hover:text-green-800 font-medium">
+                        View API Reference →
+                    </a>
+                </div>
+            </div>
+
+            <!-- User & Authentication -->
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-user-shield text-blue-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">User System</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>JWT authentication</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>User profiles</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Wishlist management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Admin permissions</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="/docs/swagger/" class="text-blue-600 hover:text-blue-800 font-medium">
+                        View API Reference →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Review System -->
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-star text-yellow-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Review System</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Product ratings & reviews</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>One review per user</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Automatic rating calculation</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="/docs/swagger/" class="text-yellow-600 hover:text-yellow-800 font-medium">
+                        View API Reference →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Discount System -->
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-tag text-purple-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">Discount System</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Time-limited discounts</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Automatic price calculation</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Admin management</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="/docs/swagger" class="text-purple-600 hover:text-purple-800 font-medium">
+                        View API Reference →
+                    </a>
+                </div>
+            </div>
+
+            <!-- API Features -->
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-code text-red-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">API Features</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>RESTful design</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Pagination & filtering</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Swagger & ReDoc documentation</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Permission-based access</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="/docs/swagger" class="text-red-600 hover:text-red-800 font-medium">
+                        Explore Documentation →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="mt-16 text-center">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Ready to Get Started?</h2>
+            <div class="space-x-4">
+                <a href="/docs/swagger/" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition inline-block">
+                    Try Interactive Docs
+                </a>
+                <a href="/" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition inline-block">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

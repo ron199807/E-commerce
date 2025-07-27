@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('E-Commerce Admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}" class="flex items-center">
+        <span class="text-xl font-bold text-white">E-Commerce Admin</span>
+    </a>
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+<style>
+:root {
+    --primary: #4f46e5;
+    --secondary: #6366f1;
+}
+#header {
+    background: var(--primary);
+}
+.module h2, .module caption, .inline-group h2 {
+    background: var(--secondary) !important;
+}
+.button, input[type=submit], input[type=button] {
+    background: var(--primary);
+}
+.button:hover, input[type=submit]:hover {
+    background: #4338ca;
+}
+</style>
+{% endblock %}
