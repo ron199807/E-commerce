@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block content %}
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_username"
+      >
+        Username
+      </label>
+      {{ form.username }} {% if form.username.errors %}
+      <p class="text-red-500 text-4xl italic">{{ form.username.errors }}</p>
+      {% endif %}
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="id_email">
+        Email
+      </label>
+      {{ form.email }} {% if form.email.errors %}
+      <p class="text-red-500 text-xs italic">{{ form.email.errors }}</p>
+      {% endif %}
+    </div>
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_password1"
+      >
+        Password
+      </label>
+      {{ form.password1 }} {% if form.password1.errors %}
+      <p class="text-red-500 text-xs italic">{{ form.password1.errors }}</p>
+      {% endif %}
+    </div>
+    <div class="mb-6">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_password2"
+      >
+        Password Confirmation
+      </label>
+      {{ form.password2 }} {% if form.password2.errors %}
+      <p class="text-red-500 text-xs italic">{{ form.password2.errors }}</p>
+      {% endif %}
+    </div>
+    <button
+      type="submit"
+      class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    >
+      Sign Up
+    </button>
+  </form>
+  <p class="text-center mt-4">
+    Already have an account?
+    <a href="{% url 'login' %}" class="text-indigo-600 hover:text-indigo-800"
+      >Login</a
+    >
+  </p>
+</div>
+{% endblock %}

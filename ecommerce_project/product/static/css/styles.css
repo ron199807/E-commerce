@@ -7,3 +7,23 @@
 #header {
     background: #4f46e5 !important;
 }
+
+/* Custom styles for admin dashboard */
+.sidebar {
+    transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        z-index: 100;
+        transform: translateX(-100%);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}
+
+.table-row:hover {
+    background-color: #f9fafb;
+}

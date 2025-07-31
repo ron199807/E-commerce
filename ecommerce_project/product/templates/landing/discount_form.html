@@ -1,0 +1,58 @@
+{% extends "landing/admin_base.html" %}
+{% load static %}
+
+{% block admin_content %}
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-6">
+        {% if form.instance.pk %}Update{% else %}Create{% endif %} Discount
+    </h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-1 gap-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.product.id_for_label }}">
+                    {{ form.product.label }}
+                </label>
+                {{ form.product }}
+                {% if form.product.errors %}
+                    <p class="text-red-500 text-xs italic">{{ form.product.errors }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.discount_percentage.id_for_label }}">
+                    {{ form.discount_percentage.label }}
+                </label>
+                <div class="relative">
+                    {{ form.discount_percentage }}
+                    <span class="absolute right-3 top-2 text-gray-500">%</span>
+                </div>
+                {% if form.discount_percentage.errors %}
+                    <p class="text-red-500 text-xs italic">{{ form.discount_percentage.errors }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.valid_until.id_for_label }}">
+                    {{ form.valid_until.label }}
+                </label>
+                {{ form.valid_until }}
+                {% if form.valid_until.errors %}
+                    <p class="text-red-500 text-xs italic">{{ form.valid_until.errors }}</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="flex items-center justify-between mt-6">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Save
+            </button>
+            <a href="{% url 'admin_discounts' %}" class="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

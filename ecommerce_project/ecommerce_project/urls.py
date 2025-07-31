@@ -7,6 +7,7 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from django.views.generic import TemplateView
 from product.admin import admin_site
+from product.views import admin_dashboard
 
 # API Documentation Setup
 schema_view = get_schema_view(
@@ -27,6 +28,9 @@ urlpatterns = [
     # Landing pages
     path('', TemplateView.as_view(template_name='landing/index.html'), name='home'),
     path('features/', TemplateView.as_view(template_name='landing/features.html'), name='features'),
+    path('admin-dashboard/', admin_dashboard, name='admin_dashboard'),
+    path('', include('product.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     
     # Admin Interface
     path('admin/', admin_site.urls),
@@ -44,6 +48,7 @@ urlpatterns = [
     path('docs/', include([
         # Your API documentation page
         path('', TemplateView.as_view(template_name='landing/api_docs.html'), name='api_docs'),
+        
         
         # Swagger/Redoc endpoints
         path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

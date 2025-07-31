@@ -1,0 +1,29 @@
+{% extends "landing/admin_base.html" %}
+{% load static %}
+
+{% block admin_content %}
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-6 text-red-600">Delete User</h2>
+    
+    <div class="mb-6 p-4 bg-gray-100 rounded-lg">
+        <p class="font-semibold">Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Joined: {{ user.date_joined|date:"M d, Y" }}</p>
+        <p class="mt-3 text-red-500 font-medium">
+            Warning: This will permanently delete the user account and all associated data.
+        </p>
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex items-center justify-between">
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Confirm Delete
+            </button>
+            <a href="{% url 'admin_users' %}" class="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

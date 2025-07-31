@@ -1,7 +1,7 @@
 from django.db import models, transaction
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.contrib.auth import get_user_model
-
+from decimal import Decimal
 
 # custome user model
 class CustomUser(AbstractUser):
@@ -103,7 +103,9 @@ class Discount(models.Model):
     discount_percentage = models.FloatField()
     valid_until = models.DateTimeField()
 
-    @property
-    def discounted_price(self):
-        return self.product.price * (1 - self.discount_percentage / 100)
+@property
+def discounted_price(self):
+    # Convert discount_percentage to Decimal first
+    discount_decimal = Decimal(str(self.discount_percentage / 100))
+    return self.product.price * (Decimal('1') - discount_decimal)
 
