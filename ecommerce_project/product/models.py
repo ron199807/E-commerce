@@ -103,9 +103,9 @@ class Discount(models.Model):
     discount_percentage = models.FloatField()
     valid_until = models.DateTimeField()
 
-@property
-def discounted_price(self):
-    # Convert discount_percentage to Decimal first
-    discount_decimal = Decimal(str(self.discount_percentage / 100))
-    return self.product.price * (Decimal('1') - discount_decimal)
+    @property
+    def discounted_price(self):
+        # Convert discount_percentage to Decimal first
+        discount_decimal = Decimal(str(self.discount_percentage / 100))
+        return self.product.price * (Decimal('1') - discount_decimal)
 
